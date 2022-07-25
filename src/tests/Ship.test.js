@@ -8,7 +8,7 @@ test('Should create a ship', () => {
 test('Should create a ship with proper lengt, hp and shipType', ()=>{
     const testShip = new Ship(2)
     expect(testShip.length).toBe(2)
-    expect(testShip.hp).toBe(2)
+    expect(testShip.hp.length).toBe(2)
     expect(testShip.type).toBe('Destroyer')
 })
 
