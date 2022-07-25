@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "test": "jest"
   }
 }
