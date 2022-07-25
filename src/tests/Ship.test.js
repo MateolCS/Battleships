@@ -1,4 +1,4 @@
-const Ship = require('../modules/Ship')
+const Ship = require('../modules/Ship');
 
 test('Should create a ship', () => {
   const testShip = new Ship(2)
