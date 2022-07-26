@@ -12,7 +12,7 @@ class GameBoard{
 
     init(){
         for(let i = 0; i < 10; i++){
-            this.board.push(new Array(10).fill('x'))
+            this.board.push(new Array(10).fill({alreadyHit: false, ship: false, ship: null}))
         }
         this.ships.push(new Ship(5))
         this.ships.push(new Ship(4))
@@ -26,6 +26,15 @@ class GameBoard{
     }
 
     attack(x,y){
-        
+        if(this.board[x][y].alreadyHit){
+            return 'You already attacked this spot'
+        }
+        if(this.board[x][y].ship !== null){
+            this.board[x][y].alreadyHit = true
+            this.board[x][y].ship.hit(this.board[x][y].index)
+        }else{
+            this.missedHits++
+            this.board[x][y].alreadyHit = true
+        }
     }
 }
