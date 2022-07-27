@@ -1,4 +1,4 @@
-const Ship = require('../modules/Ship');
+import Ship from '../modules/Ship'
 
 test('Should create a ship', () => {
   const testShip = new Ship(2)

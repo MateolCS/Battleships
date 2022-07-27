@@ -1,6 +1,6 @@
 import {SHIP_TYPES} from './Utils'
 
-class Ship{
+export default class Ship{
     constructor(length){
         this.length = length
         this.hp = new Array(length).fill(false)
@@ -20,6 +20,6 @@ class Ship{
     }
 }
 
-module.exports = Ship
+//module.exports = Ship
 
 

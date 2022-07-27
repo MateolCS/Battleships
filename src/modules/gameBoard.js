@@ -1,7 +1,7 @@
 import Ship from './Ship'
 
 
-class GameBoard{
+export default class GameBoard{
 
     constructor(){
         this.board = []
@@ -12,7 +12,7 @@ class GameBoard{
 
     init(){
         for(let i = 0; i < 10; i++){
-            this.board.push(new Array(10).fill({alreadyHit: false, ship: false, ship: null}))
+            this.board.push(new Array(10).fill({alreadyHit: false, shipIndex: ''}))
         }
         this.ships.push(new Ship(5))
         this.ships.push(new Ship(4))
@@ -27,14 +27,16 @@ class GameBoard{
 
     attack(x,y){
         if(this.board[x][y].alreadyHit){
-            return 'You already attacked this spot'
+            return 'You have already attacked this square'
         }
-        if(this.board[x][y].ship !== null){
+        if(this.board[x][y].shipIndex !== ''){
             this.board[x][y].alreadyHit = true
-            this.board[x][y].ship.hit(this.board[x][y].index)
+            //this.ships[this.board[x][y].shipIndex].hit()
         }else{
             this.missedHits++
             this.board[x][y].alreadyHit = true
         }
     }
 }
+
+//module.exports = GameBoard
