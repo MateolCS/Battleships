@@ -31,3 +31,24 @@ test('Should be able to prevent player from attacking a square more than once', 
     testGameBoard.attack(0,0)
     expect(testGameBoard.attack(0,0)).toBe('You have already attacked this square')
 })
+
+test('Should be able to place ship on the board', () =>{
+    const testGameBoard = new GameBoard()
+    testGameBoard.placeShip()
+
+})
+
+test.skip('Should be able to properly assign damage to a ship', () =>{
+    const testGameBoard = new GameBoard()
+    testGameBoard.placeShip()
+    testGameBoard.attack(0,0)
+    expect(testGameBoard.ships[0].isSunk()).toBe(false)
+    testGameBoard.attack(0,1)
+    expect(testGameBoard.ships[0].isSunk()).toBe(false)
+    testGameBoard.attack(0,2)
+    expect(testGameBoard.ships[0].isSunk()).toBe(false)
+    testGameBoard.attack(0,3)
+    expect(testGameBoard.ships[0].isSunk()).toBe(false)
+    testGameBoard.attack(0,4)
+    expect(testGameBoard.ships[0].isSunk()).toBe(true)
+})

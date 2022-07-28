@@ -1,7 +1,7 @@
 import Ship from './Ship'
 
 
-export default class GameBoard{
+class GameBoard{
 
     constructor(){
         this.board = []
@@ -12,7 +12,7 @@ export default class GameBoard{
 
     init(){
         for(let i = 0; i < 10; i++){
-            this.board.push(new Array(10).fill({alreadyHit: false, shipIndex: ''}))
+            this.board.push(new Array(10).fill({alreadyHit: false, shipIndex: undefined, shipPart: undefined}))
         }
         this.ships.push(new Ship(5))
         this.ships.push(new Ship(4))
@@ -31,12 +31,25 @@ export default class GameBoard{
         }
         if(this.board[x][y].shipIndex !== ''){
             this.board[x][y].alreadyHit = true
-            //this.ships[this.board[x][y].shipIndex].hit()
+            this.ships[this.board[x][y].shipIndex].hit(shipPart)
         }else{
             this.missedHits++
             this.board[x][y].alreadyHit = true
         }
     }
+
+    placeShip(){
+        this.board[0][0].shipIndex = 0
+        this.board[0][0].shipPart = 0
+        this.board[0][1].shipIndex = 0
+        this.board[0][1].shipPart = 1
+        this.board[0][2].shipIndex = 0
+        this.board[0][2].shipPart = 2
+        this.board[0][3].shipIndex = 0
+        this.board[0][3].shipPart = 3
+        this.board[0][4].shipIndex = 0
+        this.board[0][4].shipPart = 4
+    }
 }
 
-//module.exports = GameBoard
+module.exports = GameBoard
