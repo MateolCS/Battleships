@@ -1,7 +1,7 @@
 import Ship from './Ship'
 
 
-class GameBoard{
+export default class GameBoard{
 
     constructor(){
         this.board = []
@@ -19,7 +19,7 @@ class GameBoard{
         this.ships.push(new Ship(3, 'Submarine'))
         this.ships.push(new Ship(3, 'Cruiser'))
         this.ships.push(new Ship(2, 'Destroyer'))
-        //this.placeShipsRandomly()
+        this.placeShipsRandomly()
     }
 
     allShipsSunk(){
@@ -71,59 +71,26 @@ class GameBoard{
 
     isPlacementValid(ship, row, column, direction){
 
-        //check if the ship is out of bounds
+        //check if cords are out of range
+        if(row < 0 || row > 9 || column < 0 || column > 9){
+            return false
+        }
 
-        if(direction === 'horizontal'){
-            if(row < 0 || row > 9 || column < 0 || column + ship.length > 9){
+        //check if ship is too long
+
+        if(direction === 'horizontal' && column + ship.length > 10){
+            return false
+        }else{
+            if(row + ship.length > 10){
                 return false
             }
-        }else{
-            if(row < 0 || row + ship.length > 9 || column < 0 || column > 9){
-                return false
-            }
         }
 
-        //check if squares are empty and ship placement is possible
-
-        if(direction === 'horizontal'){
-            for(let i = 0; i < ship.length; i++){
-                if(this.board[row][column + i].shipName !== ''){
-                    return false
-                }
-            }
-        }else{
-            for(let i = 0; i < ship.length; i++){
-                if(this.board[row + i][column].shipName !== ''){
-                    return false
-                }
-            }
-        }
-
-        //check if ships overlap
-
-        if(direction === 'horizontal'){
-            for(let i = 0; i < ship.length; i++){
-                if(this.board[row + 1][column + i].shipName !== ''){
-                    return false
-                }
-            }
-        }else{
-            for(let i = 0; i < ship.length; i++){
-                if(this.board[row + i][column + 1].shipName !== ''){
-                    return false
-                }
-            }
-        }
         return true
     }
 
 
     placeShipsRandomly(){
-        // this.board[0][0] = {shipName: 'Carrier', shipPart: 0}
-        // this.board[0][1]= {shipName: 'Carrier', shipPart: 1}
-        // this.board[0][2] = {shipName: 'Carrier', shipPart: 2}
-        // this.board[0][3] = {shipName: 'Carrier', shipPart: 3}
-        // this.board[0][4] = {shipName: 'Carrier', shipPart: 4}
         let placedShips = 0
         while(placedShips < 5){
             let ship = this.ships[placedShips]
@@ -138,4 +105,4 @@ class GameBoard{
     }
 }
 
-module.exports = GameBoard
+//module.exports = GameBoard
