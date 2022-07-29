@@ -39,16 +39,7 @@ class GameBoard{
     }
 
     placeShip(){
-        this.board[0][0].shipIndex = 0
-        this.board[0][0].shipPart = 0
-        this.board[0][1].shipIndex = 0
-        this.board[0][1].shipPart = 1
-        this.board[0][2].shipIndex = 0
-        this.board[0][2].shipPart = 2
-        this.board[0][3].shipIndex = 0
-        this.board[0][3].shipPart = 3
-        this.board[0][4].shipIndex = 0
-        this.board[0][4].shipPart = 4
+        
     }
 }
 

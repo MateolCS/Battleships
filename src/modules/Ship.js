@@ -1,10 +1,9 @@
-import {SHIP_TYPES} from './Utils'
 
-export default class Ship{
-    constructor(length){
-        this.length = length
-        this.hp = new Array(length).fill(false)
-        this.type = SHIP_TYPES[length]
+class Ship{
+    constructor(inLength, inType){
+        this.length = inLength
+        this.hp = new Array(inLength).fill(false)
+        this.type = inType
     }
 
     hit(index){
@@ -20,6 +19,6 @@ export default class Ship{
     }
 }
 
-//module.exports = Ship
+module.exports = Ship
 
 
