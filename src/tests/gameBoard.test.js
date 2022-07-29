@@ -93,6 +93,17 @@ test('Should be able to validate ship placement', ()=>{
     expect(testGameBoard.isPlacementValid(testGameBoard.ships[0], -1, 0, 'horizontal')).toBe(false)
 })
 
+test('Should be able to determine if all fields in line are empty', ()=>{
+    const testGameBoard = new GameBoard()
+    testGameBoard.placeShip(testGameBoard.ships[0], 3, 3, 'horizontal')
+    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 3, 3, 'horizontal')).toBe(false)
+    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 3, 4, 'horizontal')).toBe(false)
+    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 3, 3, 'vertical')).toBe(false)
+    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 2, 3, 'vertical')).toBe(false)
+    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 1, 4, 'horizontal')).toBe(true)
+
+})
+
 // test('Should assign damage to first ship', ()=>{
 //     const testGameBoard = new GameBoard()
 //     testGameBoard.attackShip()

@@ -86,6 +86,22 @@ export default class GameBoard{
             }
         }
 
+        // check if all fields in a line are empty
+
+        if(direction === 'horizontal'){
+            for(let i = 0; i < ship.length; i++){
+                if(this.board[row][column + i].shipName !== ''){
+                    return false
+                }
+            }
+        }else{
+            for(let i = 0; i < ship.length; i++){
+                if(this.board[row + i][column].shipName !== ''){
+                    return false
+                }
+            }
+        }
+
         return true
     }
 
