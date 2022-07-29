@@ -70,6 +70,21 @@ class GameBoard{
     }
 
     isPlacementValid(ship, row, column, direction){
+
+        //check if the ship is out of bounds
+
+        if(direction === 'horizontal'){
+            if(row < 0 || row > 9 || column < 0 || column + ship.length > 9){
+                return false
+            }
+        }else{
+            if(row < 0 || row + ship.length > 9 || column < 0 || column > 9){
+                return false
+            }
+        }
+
+        //check if squares are empty and ship placement is possible
+
         if(direction === 'horizontal'){
             for(let i = 0; i < ship.length; i++){
                 if(this.board[row][column + i].shipName !== ''){
@@ -79,6 +94,22 @@ class GameBoard{
         }else{
             for(let i = 0; i < ship.length; i++){
                 if(this.board[row + i][column].shipName !== ''){
+                    return false
+                }
+            }
+        }
+
+        //check if ships overlap
+
+        if(direction === 'horizontal'){
+            for(let i = 0; i < ship.length; i++){
+                if(this.board[row + 1][column + i].shipName !== ''){
+                    return false
+                }
+            }
+        }else{
+            for(let i = 0; i < ship.length; i++){
+                if(this.board[row + i][column + 1].shipName !== ''){
                     return false
                 }
             }
