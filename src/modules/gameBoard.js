@@ -102,6 +102,29 @@ export default class GameBoard{
             }
         }
 
+        //check if fields around ship are empty
+        if(direction === 'horizontal'){
+            for(let i = -1; i < 2; i++){
+                for(let j = -1; j < 2; j++){
+                    if(row + i >= 0 && row + i < 10 && column + j >= 0 && column + j < 10){
+                        if(this.board[row + i][column + j].shipName !== ''){
+                            return false
+                        }
+                    }
+                }
+            }
+        }else{
+            for(let i = -1; i < 2; i++){
+                for(let j = -1; j < 2; j++){
+                    if(row + i >= 0 && row + i < 10 && column + j >= 0 && column + j < 10){
+                        if(this.board[row + i][column + j].shipName !== ''){
+                            return false
+                        }
+                    }
+                }
+            }
+        }
+
         return true
     }
 
