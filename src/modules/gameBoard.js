@@ -1,5 +1,6 @@
 import Ship from './Ship'
 
+const SIZE = 10
 
 export default class GameBoard{
 
@@ -71,61 +72,63 @@ export default class GameBoard{
 
     isPlacementValid(ship, row, column, direction){
 
-        //check if cords are out of range
-        if(row < 0 || row > 9 || column < 0 || column > 9){
-            return false
+
+    if (row < 0 || row > SIZE - 1 || column < 0 || column > SIZE - 1){
+        return false
+    }
+    
+  
+      // case ship doesn't fit in gameboard
+      if (direction === 'vertical') {
+        if (row + ship.length > SIZE) return false
+      } else {
+        if (column + ship.length > SIZE) return false
+      }
+  
+      // case any of the fields is already taken
+      if (direction === 'vertical') {
+        for (let i = 0; i < ship.length; i++) {
+          if (this.board[row + i][column]) return false
         }
-
-        //check if ship is too long
-
-        if(direction === 'horizontal' && column + ship.length > 10){
-            return false
-        }else{
-            if(row + ship.length > 10){
-                return false
-            }
+      } else {
+        for (let i = 0; i < ship.length; i++) {
+          if (this.board[row][column + i]) return false
         }
-
-        // check if all fields in a line are empty
-
-        if(direction === 'horizontal'){
-            for(let i = 0; i < ship.length; i++){
-                if(this.board[row][column + i].shipName !== ''){
-                    return false
-                }
+      }
+  
+      // case any of the neighbour fields are already taken
+      if (direction === 'vertical') {
+        for (let i = 0; i < ship.length; i++) {
+          for (let x = -1; x <= 1; x++) {
+            for (let y = -1; y <= 1; y++) {
+              if (
+                row + x + i < 0 ||
+                row + x + i >= SIZE ||
+                column + y < 0 ||
+                column + y >= SIZE
+              )
+                continue
+              if (this.board[row + x + i][column + y]) return false
             }
-        }else{
-            for(let i = 0; i < ship.length; i++){
-                if(this.board[row + i][column].shipName !== ''){
-                    return false
-                }
-            }
+          }
         }
-
-        //check if fields around ship are empty
-        if(direction === 'horizontal'){
-            for(let i = -1; i < 2; i++){
-                for(let j = -1; j < 2; j++){
-                    if(row + i >= 0 && row + i < 10 && column + j >= 0 && column + j < 10){
-                        if(this.board[row + i][column + j].shipName !== ''){
-                            return false
-                        }
-                    }
-                }
+      } else {
+        for (let i = 0; i < ship.length; i++) {
+          for (let x = -1; x <= 1; x++) {
+            for (let y = -1; y <= 1; y++) {
+              if (
+                row + x < 0 ||
+                row + x >= SIZE ||
+                column + y + i < 0 ||
+                column + y + i >= SIZE
+              )
+                continue
+              if (this.board[row + x][column + y + i]) return false
             }
-        }else{
-            for(let i = -1; i < 2; i++){
-                for(let j = -1; j < 2; j++){
-                    if(row + i >= 0 && row + i < 10 && column + j >= 0 && column + j < 10){
-                        if(this.board[row + i][column + j].shipName !== ''){
-                            return false
-                        }
-                    }
-                }
-            }
+          }
         }
-
-        return true
+      }
+      return true
     }
 
 
