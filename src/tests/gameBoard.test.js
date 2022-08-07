@@ -2,7 +2,7 @@ import GameBoard from '../modules/gameBoard'
 import Ship from '../modules/Ship'
 
 
-test.skip('Should create gameBoard object', ()=>{
+test('Should create gameBoard object', ()=>{
     const testGameBoard = new GameBoard()
     expect(testGameBoard).toBeDefined()
 })
@@ -82,27 +82,6 @@ test.skip('Should randomly place ships', () =>{
     expect(testGameBoard.getFilledFields()).toBe(17)
 })
 
-test('Should be able to validate ship placement', ()=>{
-    const testGameBoard = new GameBoard()
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[0], 0, 0, 'horizontal')).toBe(true)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[0], 0, 0, 'vertical')).toBe(true)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[0], 0, 6, 'horizontal')).toBe(false)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[0], 6, 0, 'vertical')).toBe(false)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[0], 0, 10, 'horizontal')).toBe(false)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[0], 11, 0, 'horizontal')).toBe(false)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[0], -1, 0, 'horizontal')).toBe(false)
-})
-
-test('Should be able to determine if all fields in line are empty', ()=>{
-    const testGameBoard = new GameBoard()
-    testGameBoard.placeShip(testGameBoard.ships[0], 3, 3, 'horizontal')
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 3, 3, 'horizontal')).toBe(false)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 3, 4, 'horizontal')).toBe(false)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 3, 3, 'vertical')).toBe(false)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 2, 3, 'vertical')).toBe(false)
-    expect(testGameBoard.isPlacementValid(testGameBoard.ships[1], 1, 4, 'horizontal')).toBe(true)
-
-})
 
 // test('Should assign damage to first ship', ()=>{
 //     const testGameBoard = new GameBoard()

@@ -1,5 +1,5 @@
 
-class Ship{
+export default class Ship{
     constructor(inLength, inType){
         this.length = inLength
         this.hp = new Array(inLength).fill(false)
@@ -19,6 +19,5 @@ class Ship{
     }
 }
 
-module.exports = Ship
-
+//module.exports = Ship
 

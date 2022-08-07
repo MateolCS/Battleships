@@ -1,7 +1,5 @@
 import Ship from './Ship'
 
-const SIZE = 10
-
 export default class GameBoard{
 
     constructor(){
@@ -20,7 +18,7 @@ export default class GameBoard{
         this.ships.push(new Ship(3, 'Submarine'))
         this.ships.push(new Ship(3, 'Cruiser'))
         this.ships.push(new Ship(2, 'Destroyer'))
-        this.placeShipsRandomly()
+        //this.placeShipsRandomly()
     }
 
     allShipsSunk(){
@@ -72,63 +70,64 @@ export default class GameBoard{
 
     isPlacementValid(ship, row, column, direction){
 
+      const SIZE = 10
 
-    if (row < 0 || row > SIZE - 1 || column < 0 || column > SIZE - 1){
-        return false
-    }
+      if (row < 0 || row > SIZE - 1 || column < 0 || column > SIZE - 1){
+          return false
+      }
+      
     
-  
-      // case ship doesn't fit in gameboard
-      if (direction === 'vertical') {
-        if (row + ship.length > SIZE) return false
-      } else {
-        if (column + ship.length > SIZE) return false
-      }
-  
-      // case any of the fields is already taken
-      if (direction === 'vertical') {
-        for (let i = 0; i < ship.length; i++) {
-          if (this.board[row + i][column]) return false
+        // case ship doesn't fit in gameboard
+        if (direction === 'vertical') {
+          if (row + ship.length > SIZE) return false
+        } else {
+          if (column + ship.length > SIZE) return false
         }
-      } else {
-        for (let i = 0; i < ship.length; i++) {
-          if (this.board[row][column + i]) return false
+    
+        // case fields already taken
+        if (direction === 'vertical') {
+          for (let i = 0; i < ship.length; i++) {
+            if (this.board[row + i][column]) return false
+          }
+        } else {
+          for (let i = 0; i < ship.length; i++) {
+            if (this.board[row][column + i]) return false
+          }
         }
-      }
-  
-      // case any of the neighbour fields are already taken
-      if (direction === 'vertical') {
-        for (let i = 0; i < ship.length; i++) {
-          for (let x = -1; x <= 1; x++) {
-            for (let y = -1; y <= 1; y++) {
-              if (
-                row + x + i < 0 ||
-                row + x + i >= SIZE ||
-                column + y < 0 ||
-                column + y >= SIZE
-              )
-                continue
-              if (this.board[row + x + i][column + y]) return false
+    
+        // case any of the neighbour fields are already taken
+        if (direction === 'vertical') {
+          for (let i = 0; i < ship.length; i++) {
+            for (let x = -1; x <= 1; x++) {
+              for (let y = -1; y <= 1; y++) {
+                if (
+                  row + x + i < 0 ||
+                  row + x + i >= SIZE ||
+                  column + y < 0 ||
+                  column + y >= SIZE
+                )
+                  continue
+                if (this.board[row + x + i][column + y]) return false
+              }
+            }
+          }
+        } else {
+          for (let i = 0; i < ship.length; i++) {
+            for (let x = -1; x <= 1; x++) {
+              for (let y = -1; y <= 1; y++) {
+                if (
+                  row + x < 0 ||
+                  row + x >= SIZE ||
+                  column + y + i < 0 ||
+                  column + y + i >= SIZE
+                )
+                  continue
+                if (this.board[row + x][column + y + i]) return false
+              }
             }
           }
         }
-      } else {
-        for (let i = 0; i < ship.length; i++) {
-          for (let x = -1; x <= 1; x++) {
-            for (let y = -1; y <= 1; y++) {
-              if (
-                row + x < 0 ||
-                row + x >= SIZE ||
-                column + y + i < 0 ||
-                column + y + i >= SIZE
-              )
-                continue
-              if (this.board[row + x][column + y + i]) return false
-            }
-          }
-        }
-      }
-      return true
+        return true
     }
 
 
@@ -142,6 +141,7 @@ export default class GameBoard{
             if(this.isPlacementValid(ship, row, column, direction)){
                 this.placeShip(ship, row, column, direction)
                 placedShips++
+                console.log('Placed ship: ' + ship.getType())
             }
         }
     }
