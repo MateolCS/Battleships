@@ -12,6 +12,7 @@ test('Should be able to attack a square', ()=>{
     const testGameBoard = new GameBoard()
     testPlayer.attack(0,0,testGameBoard)
     expect(testGameBoard.board[0][0].alreadyHit).toBe(true)
+    expect(testGameBoard.getAttackedFields()).toBe(1)
 })
 
 test('Should be able to attack random square', ()=>{

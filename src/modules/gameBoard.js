@@ -31,10 +31,10 @@ export default class GameBoard{
         }
         if(this.board[x][y].shipName !== ''){
             this.board[x][y].alreadyHit = true
-            this.ships.forEach((ship) => {
-                if(ship.getType() === this.board[x][y].shipName){
-                    ship.hit(this.board[x][y].shipPart)
-                }
+            this.ships.forEach((ship)=>{
+              if(ship.getType() === this.board[x][y].shipName){
+                ship.attack(this.board[x][y].shipPart)
+              }
             })
             
         }else{
@@ -141,9 +141,20 @@ export default class GameBoard{
             if(this.isPlacementValid(ship, row, column, direction)){
                 this.placeShip(ship, row, column, direction)
                 placedShips++
-                console.log('Placed ship: ' + ship.getType())
             }
         }
+    }
+
+    getAttackedFields(){
+      let attackedFields = 0
+      for(let i = 0; i < 10; i++){
+        for(let j = 0; j < 10; j++){
+          if(this.board[i][j].alreadyHit){
+            attackedFields++
+          }
+        }
+      }
+      return attackedFields
     }
 }
 
