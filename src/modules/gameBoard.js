@@ -18,7 +18,7 @@ export default class GameBoard{
         this.ships.push(new Ship(3, 'Submarine'))
         this.ships.push(new Ship(3, 'Cruiser'))
         this.ships.push(new Ship(2, 'Destroyer'))
-        //this.placeShipsRandomly()
+        this.placeShipsRandomly()
     }
 
     allShipsSunk(){
@@ -87,11 +87,11 @@ export default class GameBoard{
         // case fields already taken
         if (direction === 'vertical') {
           for (let i = 0; i < ship.length; i++) {
-            if (this.board[row + i][column]) return false
+            if (this.board[row + i][column].shipName !== '') return false
           }
         } else {
           for (let i = 0; i < ship.length; i++) {
-            if (this.board[row][column + i]) return false
+            if (this.board[row][column + i].shipName !== '') return false
           }
         }
     
@@ -107,7 +107,7 @@ export default class GameBoard{
                   column + y >= SIZE
                 )
                   continue
-                if (this.board[row + x + i][column + y]) return false
+                if (this.board[row + x + i][column + y].shipName !== '') return false
               }
             }
           }
@@ -122,7 +122,7 @@ export default class GameBoard{
                   column + y + i >= SIZE
                 )
                   continue
-                if (this.board[row + x][column + y + i]) return false
+                if (this.board[row + x][column + y + i].shipName !== '') return false
               }
             }
           }

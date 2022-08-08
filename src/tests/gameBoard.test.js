@@ -7,7 +7,7 @@ test('Should create gameBoard object', ()=>{
     expect(testGameBoard).toBeDefined()
 })
 
-test.skip('Should create gameBoard object with correct properties', ()=>{
+test('Should create gameBoard object with correct properties', ()=>{
     const testGameBoard = new GameBoard()
     expect(testGameBoard.board).toBeDefined()
     expect(testGameBoard.board.length).toBe(10)
@@ -18,18 +18,18 @@ test.skip('Should create gameBoard object with correct properties', ()=>{
     expect(testGameBoard.board[0].length).toBe(10)
 })
 
-test.skip('Should be able to determine if all ships are sunk', ()=>{
+test('Should be able to determine if all ships are sunk', ()=>{
     const testGameBoard = new GameBoard()
     expect(testGameBoard.allShipsSunk()).toBe(false)
 })
 
-test.skip('Should be able to allow player to attack a square', () =>{
+test('Should be able to allow player to attack a square', () =>{
     const testGameBoard = new GameBoard()
     testGameBoard.attack(0,0)
     expect(testGameBoard.board[0][0].alreadyHit).toBe(true)
 })
 
-test.skip('Should be able to prevent player from attacking a square more than once', () =>{
+test('Should be able to prevent player from attacking a square more than once', () =>{
     const testGameBoard = new GameBoard()
     testGameBoard.attack(0,0)
     expect(testGameBoard.attack(0,0)).toBe('You have already attacked this square')
@@ -61,6 +61,8 @@ test.skip('Should be able to place ship on the board vertically', () =>{
 
 })
 
+// In order for this test to work comment out placeShipsRandomly from src/modules/gameBoard.js
+
 test.skip('Should be able to properly assign damage to a ship', () =>{
     const testGameBoard = new GameBoard()
     testGameBoard.placeShip(testGameBoard.ships[0], 0, 0, 'horizontal')
@@ -77,7 +79,7 @@ test.skip('Should be able to properly assign damage to a ship', () =>{
     expect(testGameBoard.ships[0].isSunk()).toBe(true)
 })
 
-test.skip('Should randomly place ships', () =>{
+test('Should randomly place ships', () =>{
     const testGameBoard = new GameBoard()
     expect(testGameBoard.getFilledFields()).toBe(17)
 })
