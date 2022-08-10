@@ -8,6 +8,9 @@
 
 body{
     font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .header{
@@ -21,7 +24,35 @@ body{
     font-weight: 700;
 }
 
+.container{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.main{
+    flex: 1;
+    background-color: #0096c7;
+    
+}
+
+.main__board{
+    height: 90%;
+    border: 2px solid #caf0f8;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.board__square{
+    border: 1px solid #caf0f8;
+    background-color: #023e8a;
+    padding: .5rem;
+}
+
 .footer{
+    margin-top: auto;
     background-color: #023e8a;
     color: #caf0f8;
     padding: 1rem;
