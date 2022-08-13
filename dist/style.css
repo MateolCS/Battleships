@@ -29,12 +29,35 @@ body{
     margin: 0 auto;
     display: flex;
     gap: 1rem;
+    flex-direction: column;
+}
+
+.main__user__communication{
+    display: flex;
+    gap: 15rem;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    color: #caf0f8;
 }
 
 .main{
     flex: 1;
     background-color: #0096c7;
-    
+}
+
+.correct__hit{
+    background-color: #006400 !important;
+}
+
+.incorrect__hit{
+    background-color: #772e25 !important;
+}
+
+.main__boards{
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
 }
 
 .main__board{
@@ -48,7 +71,17 @@ body{
 .board__square{
     border: 1px solid #caf0f8;
     background-color: #023e8a;
-    padding: .5rem;
+    width: 10%;
+    padding: 1rem;
+}
+
+.missed__hits{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
 }
 
 .footer{
