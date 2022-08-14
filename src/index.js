@@ -3,4 +3,4 @@ import Game from "./modules/Game"
 
 const game = new Game()
 
-UI.init(game)
+UI.init(game.getPlayerBoard(), game.getComputerBoard())

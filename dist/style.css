@@ -75,6 +75,10 @@ body{
     padding: 1rem;
 }
 
+.ship__square{
+    background-color: #5e3023 !important;
+}
+
 .missed__hits{
     display: flex;
     flex-direction: column;

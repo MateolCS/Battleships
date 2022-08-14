@@ -25,6 +25,10 @@ export default class GameBoard{
         return this.board
     }
 
+    getMissedHits(){
+        return this.missedHits
+    }
+
     allShipsSunk(){
         return this.ships.every(ship => ship.isSunk())
     }
