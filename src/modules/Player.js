@@ -1,6 +1,4 @@
-import GameBoard from './GameBoard'
-
-class Player{
+export default class Player{
     constructor(name){
         this.name = name
         this.attackedFields = []
@@ -30,4 +28,3 @@ class Player{
     }
 }
 
-module.exports = Player

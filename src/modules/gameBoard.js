@@ -21,6 +21,10 @@ export default class GameBoard{
         this.placeShipsRandomly()
     }
 
+    getBoard(){
+        return this.board
+    }
+
     allShipsSunk(){
         return this.ships.every(ship => ship.isSunk())
     }
