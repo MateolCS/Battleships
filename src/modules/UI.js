@@ -1,7 +1,8 @@
 export default class UI{
-    static init(inPlayerBoard, inComputerBoard){
-        UI.drawBoards(inPlayerBoard, inComputerBoard)
-        UI.setHitCouters(inPlayerBoard, inComputerBoard)
+    static init(inGame){
+        UI.drawBoards(inGame.getPlayerBoard(), inGame.getComputerBoard())
+        UI.setHitCouters(inGame.getPlayerBoard(), inGame.getComputerBoard())
+        UI.addEvents(inGame)
     }
 
     static drawBoards(inPlayerBoard, inComputerBoard){
@@ -42,12 +43,16 @@ export default class UI{
         computerHitCounterContainer.textContent = `Missed hits: ${inComputerBoard.getMissedHits()}`
     }
 
-    static addEvents(){
+    static addEvents(inGame){
         const playerBoardContainer = document.getElementById("main-player-board")
         const computerBoardContainer = document.getElementById("main-computer-board")
 
-        playerBoardContainer.addEventListener("click", (e)=>{
+        computerBoardContainer.addEventListener("click", (e)=>{
+            const row = e.target.getAttribute("data-row")
+            const col = e.target.getAttribute("data-col")
             
+            inGame.getCurrentPlayer().attack(row, col, inGame.getComputerBoard())
+            console.log(inGame.getCurrentPlayer().getAttackedFields())
         })
     }
 }

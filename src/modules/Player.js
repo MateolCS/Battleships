@@ -12,6 +12,10 @@ export default class Player{
         return this.gameBoard
     }
 
+    getAttackedFields(){
+        return this.attackedFields
+    }
+
     randomAttack(inGameBoard){
         const row = Math.floor(Math.random() * 10)
         const col = Math.floor(Math.random() * 10)
