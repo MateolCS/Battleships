@@ -19,11 +19,21 @@ export default class Player{
     randomAttack(inGameBoard){
         const row = Math.floor(Math.random() * 10)
         const col = Math.floor(Math.random() * 10)
-        if(this.attackedFields.includes([row,col])){
+        if(this.alreadyAttacked([row,col])){
             this.randomAttack(inGameBoard)
         }else{
             this.attack(row, col, inGameBoard)
         }
+    }
+
+    alreadyAttacked(cords){
+        for(let i = 0; i < this.attackedFields.length; i++){
+            if(this.attackedFields[i][0] === cords[0] && this.attackedFields[i][1] === cords[1]){
+                return true
+            }
+        }
+
+        return false
     }
 
     attack(row, col, inGameBoard){

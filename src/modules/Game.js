@@ -9,6 +9,7 @@ export default class Game {
         this.player1 = new Player("Player 1")
         this.player2 = new Player("Player 2")
         this.currentPlayer = this.player1
+        this.currentBoard = this.computerBoard
         this.winner = null
         this.gameOver = false
     }
@@ -32,12 +33,23 @@ export default class Game {
     changeCurrentPlayer(){
         if(this.currentPlayer === this.player1){
             this.currentPlayer = this.player2
+            this.currentBoard = this.playerBoard
         } else {
             this.currentPlayer = this.player1
+            this.currentBoard = this.computerBoard
         }
     }
 
     playGame(){
-
+        while(!this.gameOver){
+            this.currentPlayer.randomAttack(this.currentBoard)
+            console.log(`${this.currentPlayer.getName()} attacked ${this.currentBoard}`)
+            this.changeCurrentPlayer()
+            if(this.currentBoard.allShipsSunk()){
+                this.winner = this.currentPlayer
+                this.gameOver = true
+            }
+        }
+        console.log(`${this.winner.getName()} won the game!`)
     }
 }

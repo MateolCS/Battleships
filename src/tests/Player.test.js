@@ -22,3 +22,11 @@ test('Should be able to attack random square', ()=>{
     testPlayer.randomAttack(testGameBoard)
 
 })
+
+test('Should be able to determine if a field was attacked before', ()=>{
+    const testPlayer = new Player('test')
+    const testGameBoard = new GameBoard()
+    testPlayer.attack(0,0,testGameBoard)
+
+    expect(testPlayer.alreadyAttacked([0,0])).toBe(true)
+})
