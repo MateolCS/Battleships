@@ -2,7 +2,7 @@ export default class UI{
     static init(inGame){
         UI.drawBoards(inGame.getPlayerBoard(), inGame.getComputerBoard())
         UI.setHitCouters(inGame.getPlayerBoard(), inGame.getComputerBoard())
-        UI.addEvents(inGame)
+        UI.addPlayerAttack(inGame)
     }
 
     static drawBoards(inPlayerBoard, inComputerBoard){
@@ -43,16 +43,20 @@ export default class UI{
         computerHitCounterContainer.textContent = `Missed hits: ${inComputerBoard.getMissedHits()}`
     }
 
-    static addEvents(inGame){
-        const playerBoardContainer = document.getElementById("main-player-board")
-        const computerBoardContainer = document.getElementById("main-computer-board")
+    static addPlayerAttack(inGame){
+        const computerBoard = document.querySelector("#main-computer-board")
 
-        computerBoardContainer.addEventListener("click", (e)=>{
-            const row = e.target.getAttribute("data-row")
-            const col = e.target.getAttribute("data-col")
-            
-            inGame.getCurrentPlayer().attack(row, col, inGame.getComputerBoard())
-            console.log(inGame.getCurrentPlayer().getAttackedFields())
+        computerBoard.addEventListener("click", (e)=>{
+            const row = e.target.getAttribute('data-row')
+            const column = e.target.getAttribute('data-col')
+
+            inGame.playerAttack(row, column)
+            if(inGame.getComputerBoard().getBoard()[row][column] === undefined){
+                e.target.classList.add('incorrect__hit')
+            }else{
+                e.target.classList.add('correct__hit')
+            }
+
         })
     }
 }

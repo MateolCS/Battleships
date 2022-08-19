@@ -6,8 +6,8 @@ export default class Game {
     constructor(){
         this.playerBoard = new GameBoard()
         this.computerBoard = new GameBoard()
-        this.player1 = new Player("Player 1")
-        this.player2 = new Player("Player 2")
+        this.player1 = new Player("User")
+        this.player2 = new Player("Computer")
         this.currentPlayer = this.player1
         this.currentBoard = this.computerBoard
         this.winner = null
@@ -38,6 +38,10 @@ export default class Game {
             this.currentPlayer = this.player1
             this.currentBoard = this.computerBoard
         }
+    }
+
+    playerAttack(inRow, inColumn){
+        this.player1.attack(inRow, inColumn, this.computerBoard)
     }
 
     playGame(){

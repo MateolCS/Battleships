@@ -4,4 +4,4 @@ import Game from "./modules/Game"
 const game = new Game()
 
 UI.init(game)
-game.playGame()
+//game.playGame()
