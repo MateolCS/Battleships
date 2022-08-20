@@ -8,8 +8,6 @@ export default class Game {
         this.computerBoard = new GameBoard()
         this.player1 = new Player("User")
         this.player2 = new Player("Computer")
-        this.currentPlayer = this.player1
-        this.currentBoard = this.computerBoard
         this.winner = null
         this.gameOver = false
     }
@@ -22,26 +20,32 @@ export default class Game {
         return this.computerBoard
     }
 
-    getCurrentPlayer(){
-        return this.currentPlayer
+    getComputer(){
+        return this.player2
     }
 
     getWinner(){
         return this.winner
     }
 
-    changeCurrentPlayer(){
-        if(this.currentPlayer === this.player1){
-            this.currentPlayer = this.player2
-            this.currentBoard = this.playerBoard
-        } else {
-            this.currentPlayer = this.player1
-            this.currentBoard = this.computerBoard
-        }
+    getGameOver(){
+        return this.gameOver
+    }
+
+    setWinner(inPlayer){
+        this.winner = inPlayer
+    }
+
+    setGameOver(){
+        this.gameOver = true
     }
 
     playerAttack(inRow, inColumn){
         this.player1.attack(inRow, inColumn, this.computerBoard)
+    }
+
+    computerAttack(){
+        this.player2.randomAttack(this.playerBoard)
     }
 
     playGame(){

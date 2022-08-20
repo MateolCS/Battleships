@@ -16,6 +16,14 @@ export default class Player{
         return this.attackedFields
     }
 
+    getLastAttackedRow(){
+        return this.attackedFields[this.attackedFields.length - 1][0]
+    }
+
+    getLastAttackedColumn(){
+        return this.attackedFields[this.attackedFields.length - 1][1]
+    }
+
     randomAttack(inGameBoard){
         const row = Math.floor(Math.random() * 10)
         const col = Math.floor(Math.random() * 10)

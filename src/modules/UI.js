@@ -50,17 +50,30 @@ export default class UI{
             const row = e.target.getAttribute('data-row')
             const column = e.target.getAttribute('data-col')
 
-            inGame.playerAttack(row, column)
-            if(inGame.getComputerBoard().getBoard()[row][column] === undefined){
-                e.target.classList.add('incorrect__hit')
-            }else{
-                e.target.classList.add('correct__hit')
+            if(!inGame.getGameOver()){
+                inGame.playerAttack(row, column)
+                if(inGame.getComputerBoard().getBoard()[row][column] === undefined){
+                    e.target.classList.add('incorrect__hit')
+                }else{
+                    e.target.classList.add('correct__hit')
+                }
+                UI.updatePlayerMissedHits(inGame)
+                if(inGame.getComputerBoard().allShipsSunk()){
+                    inGame.setWinner(inGame.getPlayer1())
+                    inGame.setGameOver(true)
+                }
             }
 
-            UI.updatePlayerMissedHits(inGame)
-        })
-
-        
+            if(!inGame.getGameOver()){
+                inGame.computerAttack()
+                UI.markComputerAttacks(inGame.getComputer().getLastAttackedRow(), inGame.getComputer().getLastAttackedColumn(),inGame)
+                UI.updateComputerMissedHits(inGame)
+                if(inGame.getPlayerBoard().allShipsSunk()){
+                    inGame.setWinner(inGame.getPlayer2())
+                    inGame.setGameOver(true)
+                }
+            }
+        }) 
     }
 
     static updatePlayerMissedHits(inGame){
@@ -71,5 +84,23 @@ export default class UI{
     static updateComputerMissedHits(inGame){
         const computerHitCounterContainer = document.getElementById("computer-hits")
         computerHitCounterContainer.textContent = `Missed hits: ${inGame.getPlayerBoard().getMissedHits()}`
+    }
+
+    static markComputerAttacks(row, column, inGame){
+        const playerBoard = document.querySelector("#main-player-board")
+        const playerBoardCells = playerBoard.querySelectorAll(".board__square")
+        if(inGame.getPlayerBoard().getBoard()[row][column] !== undefined){
+            playerBoardCells.forEach(cell =>{
+                if(Number(cell.getAttribute('data-row')) === row && Number(cell.getAttribute('data-col')) === column){
+                    cell.classList.add('correct__hit')
+                }
+            })
+        }else{
+            playerBoardCells.forEach(cell =>{
+                if(Number(cell.getAttribute('data-row')) === row && Number(cell.getAttribute('data-col')) === column){
+                    cell.classList.add('incorrect__hit')
+                }
+            })
+        }
     }
 }

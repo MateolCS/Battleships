@@ -51,7 +51,7 @@ body{
 }
 
 .incorrect__hit{
-    background-color: #772e25 !important;
+    background-color: #d90429 !important;
 }
 
 .main__boards{
@@ -76,7 +76,7 @@ body{
 }
 
 .ship__square{
-    background-color: #5e3023 !important;
+    background-color: #6d6875 !important;
 }
 
 .missed__hits{
