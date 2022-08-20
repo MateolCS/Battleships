@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header{
+    background-color: #023e8a;
+    color: #caf0f8;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.main__user__communication{
+    display: flex;
+    gap: 15rem;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    color: #caf0f8;
+}
+
+.main{
+    flex: 1;
+    background-color: #0096c7;
+}
+
+.correct__hit{
+    background-color: #006400 !important;
+}
+
+.incorrect__hit{
+    background-color: #d90429 !important;
+}
+
+.main__boards{
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+}
+
+.main__board{
+    height: 90%;
+    border: 2px solid #caf0f8;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.board__square{
+    border: 1px solid #caf0f8;
+    background-color: #023e8a;
+    width: 10%;
+    padding: 1rem;
+}
+
+.ship__square{
+    background-color: #6d6875 !important;
+}
+
+.missed__hits{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.footer{
+    margin-top: auto;
+    background-color: #023e8a;
+    color: #caf0f8;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.footer__autor__link{
+    color: #caf0f8;
+    text-decoration: none;
+}
+
+.footer__autor__link:hover{
+    color: #52b69a;
+}
