@@ -14,7 +14,7 @@
     "webpack-dev-server": "^4.9.3"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --watch",
     "serve": "webpack serve",
     "test": "jest"
   }

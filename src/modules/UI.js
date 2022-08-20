@@ -1,7 +1,7 @@
 export default class UI{
     static init(inGame){
         UI.drawBoards(inGame.getPlayerBoard(), inGame.getComputerBoard())
-        UI.setHitCouters(inGame.getPlayerBoard(), inGame.getComputerBoard())
+        UI.setHitCouters(inGame)
         UI.addPlayerAttack(inGame)
     }
 
@@ -35,12 +35,12 @@ export default class UI{
         }
     }
 
-    static setHitCouters(inPlayerBoard, inComputerBoard){
+    static setHitCouters(inGame){
         const playerHitCounterContainer = document.getElementById("player-hits")
         const computerHitCounterContainer = document.getElementById("computer-hits")
 
-        playerHitCounterContainer.textContent = `Missed hits: ${inPlayerBoard.getMissedHits()}`
-        computerHitCounterContainer.textContent = `Missed hits: ${inComputerBoard.getMissedHits()}`
+        playerHitCounterContainer.textContent = `Missed hits: ${inGame.getPlayerBoard().getMissedHits()}`
+        computerHitCounterContainer.textContent = `Missed hits: ${inGame.getComputerBoard().getMissedHits()}`
     }
 
     static addPlayerAttack(inGame){
@@ -57,6 +57,19 @@ export default class UI{
                 e.target.classList.add('correct__hit')
             }
 
+            UI.updatePlayerMissedHits(inGame)
         })
+
+        
+    }
+
+    static updatePlayerMissedHits(inGame){
+        const playerHitCounterContainer = document.getElementById("player-hits")
+        playerHitCounterContainer.textContent = `Missed hits: ${inGame.getComputerBoard().getMissedHits()}`
+    }
+
+    static updateComputerMissedHits(inGame){
+        const computerHitCounterContainer = document.getElementById("computer-hits")
+        computerHitCounterContainer.textContent = `Missed hits: ${inGame.getPlayerBoard().getMissedHits()}`
     }
 }
